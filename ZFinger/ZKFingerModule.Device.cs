@@ -42,6 +42,9 @@ namespace ZKFinger
                     throw new InvalidOperationException("No device are connected");
 
                 _handle = ZFingerSDK.Device.Open();
+                if (_handle == IntPtr.Zero)
+                    throw new InvalidOperationException("Device is busy or internal SDK error occurred");
+
                 ZFingerSDK.Device.GetMetrics(_handle, out _width, out _height, out _dpi);
                 _image = new byte[_width * _height];
             }
