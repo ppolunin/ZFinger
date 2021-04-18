@@ -28,6 +28,7 @@ namespace ZKFinger
         FingerRegisterSuccess,
         FingerUnregistered,
         FingerWarnUnregistered,
+        Exception,
         Closed
     }
 
