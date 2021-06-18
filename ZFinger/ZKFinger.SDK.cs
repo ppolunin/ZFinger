@@ -76,12 +76,13 @@ namespace ZKFinger.SDK
         {
             public static int MergeListInto(IEnumerable<byte[]> list, out byte[] template)
             {
-                Pointer[] ptr = list.Select(item => Pointer.Alloc(item)).Take(3).ToArray();
+                var items = list.Take(3).ToArray();
+                if (items.Length != 3)
+                    throw new RankException("The list parameter must has a capacity is a 3");
+
+                Pointer[] ptr = items.Select(item => Pointer.Alloc(item)).ToArray();
                 try
                 {
-                    if (ptr.Length != 3)
-                        throw new RankException("The list parameter must has a capacity is a 3");
-
                     template = new byte[MAX_TEMPLATE_SIZE];
                     Pointer ptemp = Pointer.Alloc(template);
                     try

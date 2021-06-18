@@ -5,8 +5,6 @@ using System.Threading;
 namespace ZKFinger
 {
     using SDK;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public enum ZKSessionType : int
     {
@@ -32,7 +30,7 @@ namespace ZKFinger
         Closed
     }
 
-    public static partial class ZKFingerModule
+    public static partial class ZKFingerSessions
     {
         private static ContextAdapter Context;
         private static IZKTemplatesStorage Storage;
@@ -108,14 +106,13 @@ namespace ZKFinger
                     throw new InvalidOperationException($"The another inastance of session ({_session.GetType().Name}) is already opened");
                 else
                 {
-                    if (storage == null)
-                        throw new ArgumentNullException("A \"storage\" parameter is NULL");
+                    Storage = storage ?? throw new ArgumentNullException("A \"storage\" parameter is NULL");
 
                     if (stateChanged == null)
                         throw new ArgumentNullException("A \"stateChanged\" parameter is NULL");
 
                     Context = new ContextAdapter(stateChanged, context);
-                    Storage = storage;
+                    
 
                     switch (type)
                     {

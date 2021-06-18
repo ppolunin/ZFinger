@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace ZKFinger
 {
-    public static partial class ZKFingerModule
+    public static partial class ZKFingerSessions
     {
         private class ContextAdapter
         {

@@ -20,7 +20,7 @@ namespace TestZFinger
         {
             bool result = cbxCloseSession.Checked;
             if (result)
-                ZKFingerModule.CloseSession();
+                ZKFingerSessions.CloseSession();
             return result;
         }
 
@@ -139,14 +139,14 @@ namespace TestZFinger
 
         private void bnClose_Click(object sender, EventArgs e)
         {
-            ZKFingerModule.CloseSession();
+            ZKFingerSessions.CloseSession();
         }
 
         private void bnOpen_Click(object sender, EventArgs e)
         {
             try
             {
-                ZKFingerModule.OpenSession((ZKSessionType)cbSessionType.SelectedItem, storage, FingerModuleStateProc);
+                ZKFingerSessions.OpenSession((ZKSessionType)cbSessionType.SelectedItem, storage, FingerModuleStateProc);
 
                 bnOpen.Enabled = false;
             }

@@ -5,7 +5,7 @@ namespace ZKFinger
 {
     using SDK;
 
-    public static partial class ZKFingerModule
+    public static partial class ZKFingerSessions
     {
         private class SessionRegister : Session
         {
